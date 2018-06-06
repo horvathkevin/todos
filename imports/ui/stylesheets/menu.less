@@ -11,7 +11,7 @@
     .active {
       border-bottom: 1px solid;
       padding-bottom: 1px;
-      color: @color-secondary;
+      color: @color-primary;
     }
   }
 
@@ -90,18 +90,18 @@
     }
 
     .list-todo {
-      color: rgba(255,255,255,.4);
+      color: rgb(0, 0, 0);
 
       &:hover,
       &:active,
       &.active {
-        color: @color-empty;
+        color: black;
         .count-list { background: @color-primary; }
       }
 
       .cordova &:hover {
         // Prevent hover states from being noticeable on Cordova apps
-        color: rgba(255,255,255,.4);
+        color: rgb(0, 0, 0);
       }
     }
   }

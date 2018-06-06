@@ -5,10 +5,11 @@
 
 body {
   .position(absolute, 0, 0, 0, 0);
-  background-color: #315481;
-  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  //background-color: #315481;
+  background-color: white;
+  //background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  //background-repeat: no-repeat;
+  //background-attachment: fixed;
 }
 
 #container {
@@ -30,13 +31,14 @@ body {
 
 #menu {
   .position(absolute, 0, 0, 0, 0, @menu-width);
+  background: @color-empty;
 }
 
 #content-container {
   .position(absolute, 0, 0, 0, 0);
   transition: all 200ms ease-out;
   transform: translate3d(0, 0, 0);
-  background: @color-tertiary;
+  background: @color-medium;
   opacity: 1;
 
   .page {

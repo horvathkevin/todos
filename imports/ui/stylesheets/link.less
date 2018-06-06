@@ -2,11 +2,19 @@
 
 a {
   transition: all 200ms ease-in;
-  color: @color-secondary;
+  color: @color-ancillary;
   cursor: pointer;
   text-decoration: none;
 
-  &:hover { color: darken(@color-primary, 10%); }
+  &:hover { color: @color-primary; }
   &:active { color: @color-well; }
   &:focus { outline:none; } //removes FF dotted outline
+
+  &.js-toggle-language, &.link-list-new {
+    color: black;
+
+    &:hover { color: @color-primary; }
+    &:active { color: @color-well; }
+    &:focus { outline:none; } //removes FF dotted outline
+  }
 }
