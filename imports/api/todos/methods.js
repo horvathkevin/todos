@@ -22,6 +22,7 @@ export const insert = new ValidatedMethod({
       listId,
       text,
       checked: false,
+      priority: 0,
       createdAt: new Date(),
     };
 
@@ -78,6 +79,28 @@ export const updateText = new ValidatedMethod({
   },
 });
 
+export const setPriority = new ValidatedMethod({
+  name: 'todos.setPriority',
+  validate: new SimpleSchema({
+    todoId: Todos.simpleSchema().schema('_id'),
+    newPriority: Todos.simpleSchema().schema('priority'),
+  }).validator({ clean: true, filter: false }),
+  run({ todoId, newPriority }) {
+    const todo = Todos.findOne(todoId);
+
+    if (!todo.editableBy(this.userId)) {
+      throw new Meteor.Error('todos.updateText.accessDenied',
+        'Cannot edit todos in a private list that is not yours');
+    }
+
+    Todos.update(todoId, {
+      $set: {
+        priority: (_.isUndefined(newPriority) ? null : newPriority),
+      },
+    });
+  },
+});
+
 export const remove = new ValidatedMethod({
   name: 'todos.remove',
   validate: new SimpleSchema({
@@ -100,6 +123,7 @@ const TODOS_METHODS = _.pluck([
   insert,
   setCheckedStatus,
   updateText,
+  setPriority,
   remove,
 ], 'name');
 

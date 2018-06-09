@@ -8,6 +8,7 @@ import { Todos } from '../../api/todos/todos.js';
 
 import {
   setCheckedStatus,
+  setPriority,
   updateText,
   remove,
 } from '../../api/todos/methods.js';
@@ -43,6 +44,23 @@ Template.Todos_item.events({
     });
   },
 
+  'change input[type=number]' (event) {
+    setPriority.call({
+      todoId: this.todo._id,
+      newPriority: event.target.value,
+    }, displayError);
+  },
+
+  'focus input[type=number]'() {
+    this.onEditingChange(true);
+  },
+
+  'blur input[type=number]'() {
+    if (this.editing) {
+      this.onEditingChange(false);
+    }
+  },
+
   'focus input[type=text]'() {
     this.onEditingChange(true);
   },
@@ -54,6 +72,14 @@ Template.Todos_item.events({
   },
 
   'keydown input[type=text]'(event) {
+    // ESC or ENTER
+    if (event.which === 27 || event.which === 13) {
+      event.preventDefault();
+      event.target.blur();
+    }
+  },
+
+  'keydown input[type=number]'(event) {
     // ESC or ENTER
     if (event.which === 27 || event.which === 13) {
       event.preventDefault();

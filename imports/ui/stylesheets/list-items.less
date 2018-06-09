@@ -13,15 +13,25 @@
     flex: 0, 0, 44px;
     cursor: pointer;
   }
-  input[type="text"] {
-    flex: 1;
+  input[type="text"], input[type="number"] {
     color: #333333;
   }
+
+  input[type="text"] { flex: 1; }
+
+  input[type="number"] {
+    flex: 0, 0, 75px;
+    width: 75px;
+    text-align: center;
+    border: none;
+    padding-right: 0.625rem;
+  }
+
   .delete-item { flex: 0, 0, 3rem; }
 
 
   // Style of list-item children
-  input[type="text"] {
+  input[type="text"], input[type="number"] {
     background: transparent;
     cursor: pointer;
 
@@ -44,7 +54,7 @@
 
   // Checked
   &.checked {
-    input[type="text"] {
+    input[type="text"], input[type="number"] {
       color: @color-medium-rare;
       text-decoration: line-through;
     }

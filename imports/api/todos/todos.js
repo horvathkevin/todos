@@ -59,6 +59,10 @@ Todos.schema = new SimpleSchema({
     type: Boolean,
     defaultValue: false,
   },
+  priority: {
+    type: Number,
+    defaultValue: false,
+  },
 });
 
 Todos.attachSchema(Todos.schema);
@@ -71,6 +75,7 @@ Todos.publicFields = {
   text: 1,
   createdAt: 1,
   checked: 1,
+  priority: 1
 };
 
 // TODO This factory has a name - do we have a code style for this?
@@ -79,6 +84,7 @@ Todos.publicFields = {
 Factory.define('todo', Todos, {
   listId: () => Factory.get('list'),
   text: () => faker.lorem.sentence(),
+  priority: () => 0,
   createdAt: () => new Date(),
 });
 
